@@ -1,0 +1,23 @@
+{
+  "name": "27r-nodejs",
+  "version": "1.0.0",
+  "description": "using node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Varshini8185/node.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Varshini8185/node.js/issues"
+  },
+  "homepage": "https://github.com/Varshini8185/node.js#readme",
+  "dependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
