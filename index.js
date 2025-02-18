@@ -15,4 +15,4 @@ const server = http.createServer((req,res)=>{
     res.write("hello world");
     res.end("response provided")
 })
-server.listen("3101","192.168.128.237",()=>{console.log("server is running")})
+server.listen("3101",()=>{console.log("server is running")})
