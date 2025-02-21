@@ -26,65 +26,106 @@
 //   console.log("server is running");
 // })
 
-const http = require("http");
-const url = require("url");
+// const http = require("http");
+// const url = require("url");
 
-const server = http.createServer((req, res) => {
-  if (req.method == "GET") {
-    const parsedurl = url.parse(req.url, true);
-    console.log(parsedurl);
-    if (parsedurl.pathname == "/menu") {
-      res.writeHead(200, "ok", { "content-type": "application/json" });
-      res.write(
-        JSON.stringify({
-          veg: [{ panner: "150rs", gobi: "120rs" }],
-          nonveg: [{ chicken: "250rs", fish: "320rs" }],
-          message: "thank you for your order",
-        })
-      );
-      res.end();
-    } else if (parsedurl.pathname == "/menu/veg") {
-      if (parsedurl.query.item == "panner") {
-        res.writeHead(200, "ok", { "content-type": "application/json" });
-        res.write(
-          JSON.stringify({
-            category: "veg",
-            item: parsedurl.query.item,
-            price: parsedurl.query.quantity * 150,
-            message: "thank you for your order "
-          })
-        );
-        res.end();
-      } else if (parsedurl.query.item == "gobi") {
-        res.writeHead(200, "ok", { "content-type": "application/json" });
-        res.write(
-          JSON.stringify({
-            category: "veg",
-            item: parsedurl.query.item,
-            price: parsedurl.query.quantity * 120,
-            message: "thank you for your order "
-          })
-        );
+// const server = http.createServer((req, res) => {
+//   if (req.method == "GET") {
+//     const parsedurl = url.parse(req.url, true);
+//     console.log(parsedurl);
+//     if (parsedurl.pathname == "/menu") {
+//       res.writeHead(200, "ok", { "content-type": "application/json" });
+//       res.write(
+//         JSON.stringify({
+//           veg: [{ panner: "150rs", gobi: "120rs" }],
+//           nonveg: [{ chicken: "250rs", fish: "320rs" }],
+//           message: "thank you for your order",
+//         })
+//       );
+//       res.end();
+//     } else if (parsedurl.pathname == "/menu/veg") {
+//       if (parsedurl.query.item == "panner") {
+//         res.writeHead(200, "ok", { "content-type": "application/json" });
+//         res.write(
+//           JSON.stringify({
+//             category: "veg",
+//             item: parsedurl.query.item,
+//             price: parsedurl.query.quantity * 150,
+//             message: "thank you for your order ",
+//           })
+//         );
+//         res.end();
+//       } else if (parsedurl.query.item == "gobi") {
+//         res.writeHead(200, "ok", { "content-type": "application/json" });
+//         res.write(
+//           JSON.stringify({
+//             category: "veg",
+//             item: parsedurl.query.item,
+//             price: parsedurl.query.quantity * 120,
+//             message: "thank you for your order ",
+//           })
+//         );
+//         res.end();
+//       } else {
+//         res.writeHead(200, "ok", { "content-type": "application/json" });
+//         res.write(
+//           JSON.stringify({
+//             message: "item not found ",
+//           })
+//         );
+//         res.end();
+//       }
+//     }
+//   } else {
+//     res.writeHead(200, "ok", { "content-type": "application/json" });
+//     res.write(
+//       JSON.stringify({
+//         message: "item not found ",
+//       })
+//     );
+//     res.end();
+//   }
+// });
+// server.listen("2000", () => {
+//   console.log("server is running");
+// });
+
+// const http = require("http")
+// const server = http.createServer((req,res) => {
+
+//   if (req.method == "POST"){
+//       let body = ""
+//       req.on("data",(chunk)=>{
+//         body +=chunk.toString();
+//         console.log(body);
+//       });
+//        req.on("error",(err)=>{
+//         console.log(err);
+//         res.write(err);
+//       })
+//       ;req.on("end",()=>{
+//         res.end("data recived");
+//       })
+//   }
+// });
+// server.listen("3101",()=>{console.log("server is running")})
+
+const http = require("http")
+const url = require("url")
+const fs = require("fs")
+const server = http.createServer((req,res)=>{
+  if(req.method == "GET"){
+    fs.readFile("./sample.txt","utf8",(err,data)=>{
+      if(err){
+        console.log(err);
+        res.write(err);
         res.end();
       }else{
-        res.writeHead(200, "ok", { "content-type": "application/json" });
-        res.write(
-          JSON.stringify({
-            message: "item not found ",
-          })
-        )
-        res.end()
-        
+        console.log(data);
+        res.write(data);
+        res.end();
       }
-    }
-  }else{
-    res.writeHead(200, "ok", { "content-type": "application/json" });
-        res.write(
-          JSON.stringify({
-            message: "item not found ",
-          })
-        )
-        res.end()
-  }});
-  server.listen("2000",()=>{console.log("server is running")});
-
+    });
+  }
+});
+server.listen("3102",()=>{console.log("sever is running")})
