@@ -110,22 +110,72 @@
 // });
 // server.listen("3101",()=>{console.log("server is running")})
 
-const http = require("http")
+// const http = require("http")
 const url = require("url")
-const fs = require("fs")
-const server = http.createServer((req,res)=>{
-  if(req.method == "GET"){
-    fs.readFile("./sample.txt","utf8",(err,data)=>{
-      if(err){
-        console.log(err);
-        res.write(err);
-        res.end();
-      }else{
-        console.log(data);
-        res.write(data);
-        res.end();
+// const fs = require("fs")
+// const server = http.createServer((req,res)=>{
+//   if(req.method == "GET"){
+//     fs.readFile("./sample.txt","utf8",(err,data)=>{
+//       if(err){
+//         console.log(err);
+//         res.write(err);
+//         res.end();
+//       }else{
+//         console.log(data);
+//         res.write(data);
+//         res.end();
+//       }
+//     });
+//   }
+// });
+// server.listen("3102",()=>{console.log("sever is running")})
+
+// const http = require("http");
+// const fs = require("fs");
+// const server = http.createServer((req, res) => {
+//   if (req.method == "GET") {
+//     fs.readFile("./users.json", "utf8", (err, data) => {
+//       if (err) {
+//         res.end("error");
+//       } else {
+//         console.log(JSON.parse(data));
+//         res.writeHead(200, "ok", { "content-type": "application/json" });
+//         res.write(data);
+//         res.end();
+//       }
+//     });
+//   }
+// });
+const http = require("http");
+const fs = require("fs");
+const server = http.createServer((req, res) => {
+  if (req.method == "POST") {
+    let ipdata = {
+      name: "varsha",
+      role: "software developer",
+      location: "hyd",
+      email: "varsha@gmail.com",
+    };
+    fs.readFile("./users.json", "utf8", (err, data) => {
+      if (err) {
+        res.end(err); 
+      } else {
+        let existingData = JSON.parse(data);
+        existingData.push(ipdata);
+        let updatedData = existingData;
+        fs.writeFile("./users.json",JSON.stringify(updatedData),(err)=>{
+          if (err){
+            res.end(err)
+          }
+          else{
+            res.write("data updated");
+            res.end();
+          }
+        });
       }
     });
   }
 });
-server.listen("3102",()=>{console.log("sever is running")})
+server.listen(3103, () => {
+  console.log("sever is running");
+});

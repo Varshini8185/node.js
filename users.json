@@ -1,0 +1,21 @@
+[{
+  "name":"varshini",
+  "role":"software developer",
+  "location":"hyd",
+  "email":"varshini@gmail.com"
+},{
+   "name":"raghu",
+  "role":"frontend developer",
+  "location":"sec",
+   "email":"raghu@gmail.com"
+},{
+   "name":"bhumika",
+  "role":"backend developer",
+  "location":"jublie hills",
+   "email":"bhumika@gmail.com"
+},{
+   "name":"bhavya",
+  "role":"UI developer",
+  "location":"hightech city",
+   "email":"bhavya@gmail.com"
+}]
